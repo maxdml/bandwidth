@@ -19,7 +19,7 @@ parser.add_argument('runs', help='the number of run you want to perform', type=i
 args = parser.parse_args()
 
 #Modify constants here
-rawdata = '/var/www/html/bandwidth/raw_data.json'
+rawdata = '/var/www/html/bandwidth/raw_data'
 wd      = '/home/max/codeZ/bandwidth/'
 data    =  wd + 'data.json'
 chrome  = '/opt/google/chrome/google-chrome'
