@@ -1,0 +1,15 @@
+--- /home/max/.config/google-chrome/Default/Extensions/fploionmjgeclbkemipmkogoaohcdbig/1.2.2_0/timer.js	2014-12-26 02:02:16.777710721 -0500
++++ /home/max/codeZ/bandwidth/timer.modif	2014-12-26 02:02:03.204892134 -0500
+@@ -14,6 +14,12 @@
+                 var time = String(((t.loadEventEnd - start) / 1000).toPrecision(3)).substring(0, 4);
+                 var roe = chrome.runtime && chrome.runtime.sendMessage ? 'runtime' : 'extension';            
+                 chrome[roe].sendMessage({time: time, timing: t});
++
++                var xhr = new XMLHttpRequest();
++                xhr.open('POST', 'https://127.0.0.1/bandwidth/listener.php', true);
++                xhr.setRequestHeader('Content-Type', 'text; charset=UTF-8');
++                var data = window.location.href + ' : ' + time;
++                xhr.send(data);
+             }
+         }, 0);
+     }
