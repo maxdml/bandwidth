@@ -8,7 +8,7 @@
 +                var xhr = new XMLHttpRequest();
 +                xhr.open('POST', 'https://127.0.0.1/bandwidth/listener.php', true);
 +                xhr.setRequestHeader('Content-Type', 'text; charset=UTF-8');
-+                var data = window.location.href + ' : ' + time;
++                var data = window.location.hostname + ' : ' + time;
 +                xhr.send(data);
              }
          }, 0);
