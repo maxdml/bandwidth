@@ -56,7 +56,7 @@ def requester():
                             shell=True);
 
         #FIXME: make sure that all pages have been load to manipulate raw_data.json
-        time.sleep(8)
+        time.sleep(80)
             
         #parse raw_data and build a structure to calculate the mean 
         index_run = c + 1
@@ -68,9 +68,7 @@ def requester():
                 #print 'reading from ' + str(offset + 1) + ' to ' + str(offset + url_nb)
                 parsed     = lines[line].rstrip('\r\n')
                 sparsed    = re.split(' : ', parsed)
-                format_url = re.sub('(http)s?://', '', sparsed[0])
-                format_url = format_url.rstrip('/')
-                data_serie[args.bwrate][index_run][format_url] = sparsed[1]
+                data_serie[args.bwrate][index_run][sparsed[0]] = sparsed[1]
 
     #create a backup for the runs serie
     backup_file = wd + args.bwrate + '_all_runs_' + serie_time
