@@ -1,16 +1,18 @@
 <html>
     <div id="ytplayer"></div>
-    <div id ="start"></p>
-    <div id ="end"></p>
+    <div id ="start"></div>
+    <div id ="end"></div>
+    <div id ="off"></div>
         <script>
-            // Load the IFrame Player API code asynchronously.
+            var start;
+            var total;
+            var duration;
+
             var tag = document.createElement('script');
             tag.src = "https://www.youtube.com/player_api";
             var firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-            // Replace the 'ytplayer' element with an <iframe> and
-            // YouTube player after the API code downloads.
             var player;
             function onYouTubePlayerAPIReady() {
                 player = new YT.Player('ytplayer', {
@@ -27,15 +29,19 @@
 
             function onPlayerReady() {
                 player.setPlaybackQuality('hd1080');
-                //alert(player.getDuration() + ' to play');
-                document.getElementById('start').innerHTML = 'Total video time: ' + player.getDuration();
+                duration = player.getDuration();
+                document.getElementById('start').innerHTML = 'Total video time: ' + duration ' s';
                 player.playVideo();
+                start = Date.now();
             }
 
             function onPlayerStateChange(state) {
                 if (state.data == 0) {
-                    document.getElementById('start').innerHTML = 'Total time ellapsed: ' + player.getCurrentTime();
-                    //alert(player.getCurrentTime())
+                    var end = Date.now();
+                    total_ms = end - start;
+                    total_s = Math.floor(total_ms / 1000);
+                    off = total_s - duration;
+                    document.getElementById('off').innerHTML = 'Video was off by: ' + off + ' s';
                 }
             }
         </script>
