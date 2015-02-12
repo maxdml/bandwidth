@@ -13,11 +13,11 @@
 #       kbit: Kilobits
 #  To get the byte figure from bits, divide the number by 8 bit
 #
-TC=/usr/sbin/tc
-IF=wlp2s0		    # Interface 
-DNLD=1mbps          # DOWNLOAD Limit
+TC=/sbin/tc
+IF=eth0		    # Interface 
+DNLD=7.5mbps          # DOWNLOAD Limit
 #UPLD=0.5mbps          # UPLOAD Limit 
-IP=10.190.88.29     # Host IP
+IP=152.3.144.156
 U32="$TC filter add dev $IF protocol ip parent 1:0 prio 1 u32"
  
 start() {
